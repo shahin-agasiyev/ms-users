@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: "postgres:latest"
+    container_name: ms-users
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5437:5432"
+    volumes:
+      - ms_users_postgres:/var/lib/postgresql/data
+
+volumes:
+  ms_users_postgres:
