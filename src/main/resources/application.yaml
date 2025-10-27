@@ -1,5 +1,6 @@
 server:
   port: 8081
+
 spring:
   application:
     name: ms_users
@@ -9,6 +10,7 @@ spring:
     password: postgres
   jpa:
     open-in-view: false
+    show-sql: true
   liquibase:
     change-log: classpath:/liquibase/db.changelog-master.yaml
   rabbitmq:
@@ -20,13 +22,16 @@ spring:
       simple:
         retry:
           enabled: true
-          initial-interval: 10s
-          max-attempts: 5
-          max-interval: 15s
-          multipler: 1
-        missing-queues-fatal: false
-
-rabbitmq:
-  publisher-service:
-    queue: PUBLISHER_Q
-    dlq: PUBLISHER_DLQ
+          initial-interval: 3s
+          max-attempts: 3
+          multiplier: 2
+          max-interval: 10s
+        default-requeue-rejected: false
+        acknowledge-mode: auto
+        prefetch: 10
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1s
+        max-attempts: 3
+        multiplier: 2

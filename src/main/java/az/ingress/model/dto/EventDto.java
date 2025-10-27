@@ -21,7 +21,6 @@ public class EventDto {
     String description;
     String location;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     LocalDateTime startTime;
-
-    LocalDateTime endTime;
 }
