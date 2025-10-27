@@ -1,5 +1,7 @@
 package az.ingress.queue.abstraction;
 
+import az.ingress.model.dto.EventDto;
+
 public interface MessageSubscriber {
-    void subscribe(String message);
+    void consumeEventMessage(EventDto eventDto);
 }
